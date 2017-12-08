@@ -7,7 +7,7 @@ const gulp = require('gulp'),
       webserver = require('gulp-webserver');
 
 var src = './src',
-    app = './builds/app';
+    app = './build/app';
 
 gulp.task('js', () => {
   return gulp.src(src + '/index.js')
@@ -22,7 +22,7 @@ gulp.task('js', () => {
       transform: 'babelify',
       debug: true
     }))
-    .pipe(gulp.dest('./builds/app/js'));
+    .pipe(gulp.dest('./build/app/js'));
 });
 
 // gulp.task('react', () => {
@@ -44,8 +44,7 @@ gulp.task('css', () => {
 //     }));
 
  gulp.task('watch', () => {
-  // gulp.watch( src + '**/*.js', ['react']); //fix this
-   gulp.watch( src + '/*.js' ['js']);
+   gulp.watch( src + '**/*.js', ['js']);
    gulp.watch( app + '/css/**/*.css', ['css']);
    gulp.watch( app + '/**/*.html', ['html']);
  });

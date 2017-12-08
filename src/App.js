@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Contacts from './Components/Contacts'
+import Contacts from './Components/Contacts';
+import AddContact from './Components/AddContact';
 
 class App extends Component {
   constructor () {
     super ();
     this.state = {
-      contacts: [
-        {
-          id: '1',
-          title: 'A-Z Publicists',
-          contact: 'Sara Lee',
-          category: 'publicist',
-          phone: '888-888-8888',
-          city: 'Cleveland'
-        },
-        {
-          id: '2',
-          title: 'Blue Note',
-          contact: 'Johnny Bowtie',
-          category: 'venue',
-          phone: '555-555-5555',
-          city: 'Cincinnati'
-        }
-      ],
+      contacts: []
     }
+  }
+
+  componentWillMount(){
+    this.setState({contacts: [
+      {
+        id: '1',
+        title: 'A-Z Publicists',
+        contact: 'Sara Lee',
+        category: 'publicist',
+        phone: '888-888-8888',
+        city: 'Cleveland'
+      },
+      {
+        id: '2',
+        title: 'Blue Note',
+        contact: 'Johnny Bowtie',
+        category: 'venue',
+        phone: '555-555-5555',
+        city: 'Cincinnati'
+      }
+    ]});
   }
 
 handleDeleteContact(id){
@@ -45,6 +50,7 @@ render() {
         <div className="col-sm-7" id="Mind">
           <div className="Main_Form">
             <h4>Insert Form Here</h4>
+              <AddContact />
               <Contacts contacts={this.state.contacts} onDelete={this.handleDeleteContact.bind(this)}/>
           </div>
         </div>
