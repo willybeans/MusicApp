@@ -10,25 +10,24 @@ class AddContact extends React.Component {
   handleSubmit(e){
     if(this.refs.title.value === ''){
       alert("Title is required!");
-    } else if (this.refs.name.value === ''){
+    } else if (this.refs.contact.value === ''){
       alert("Name is required!");
-    } else if (this.refs.number.value === ''){
+    } else if (this.refs.phone.value === ''){
       alert("Number is required!");
     } else if (this.refs.city.value === ''){
       alert("City is required!");
     } else {
-      alert("title: "+this.refs.title.value);
-      alert("contact: "+this.refs.name.value);
-      alert("category: "+this.refs.category.value);
-      alert("number: "+this.refs.number.value);
-      alert("city: "+this.refs.city.value);
       this.setState({newContact:{
+        id : this.refs.phone.value,
         title: this.refs.title.value,
-        contact: this.refs.name.value,
-        catgetory: this.refs.category.value,
-        number: this.refs.number.value,
+        contact: this.refs.contact.value,
+        category: this.refs.category.value,
+        phone: this.refs.phone.value,
         city: this.refs.city.value
-      }});
+      }}, function(){
+        //console.log(this.state);
+        this.props.addContact(this.state.newContact);
+      });
     }
     e.preventDefault();
   }
@@ -44,7 +43,7 @@ class AddContact extends React.Component {
           </div>
           <div>
             <label>Contact Name</label><br />
-            <input type="text" ref="name" />
+            <input type="text" ref="contact" />
           </div>
           <div>
             <label>Category</label><br />
@@ -58,7 +57,7 @@ class AddContact extends React.Component {
           </div>
           <div>
             <label>Number</label><br />
-            <input type="text" ref="number" />
+            <input type="text" ref="phone" />
           </div>
           <div>
             <label>City</label><br />
