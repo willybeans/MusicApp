@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Contacts from './Components/Contacts';
 import AddContact from './Components/AddContact';
+import * as firebase from 'firebase';
 
 class App extends Component {
   constructor () {
@@ -12,9 +13,21 @@ class App extends Component {
   }
 
   componentWillMount(){
+var config = {
+  apiKey: "AIzaSyByH3hYHm_xX-I8bxcZBqbmMaT4RHtU9Mw",
+  authDomain: "musicapp-c75bf.firebaseapp.com",
+  databaseURL: "https://musicapp-c75bf.firebaseio.com",
+  projectId: "musicapp-c75bf",
+  storageBucket: "musicapp-c75bf.appspot.com",
+  messagingSenderId: "1094864530762"
+};
+firebase.initializeApp(config);
+
+
+
     this.setState({contacts: [
       {
-        id: '1',
+        id: 11,
         title: 'A-Z Publicists',
         contact: 'Sara Lee',
         category: 'publicist',
@@ -22,7 +35,7 @@ class App extends Component {
         city: 'Cleveland'
       },
       {
-        id: '2',
+        id: 1,
         title: 'Blue Note',
         contact: 'Johnny Bowtie',
         category: 'venue',
@@ -30,6 +43,12 @@ class App extends Component {
         city: 'Cincinnati'
       }
     ]});
+  }
+
+  componentDidMount(){
+    const rootRef = firebase.database().ref();
+    const contactRef = rootRef.child('contacts');
+    console.log(contactRef);
   }
 
   handleAddContact(contact){

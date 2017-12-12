@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class AddContact extends React.Component {
   constructor(){
     super();
@@ -18,7 +19,7 @@ class AddContact extends React.Component {
       alert("City is required!");
     } else {
       this.setState({newContact:{
-        id : this.refs.phone.value,
+        id : this.refs.title.value,
         title: this.refs.title.value,
         contact: this.refs.contact.value,
         category: this.refs.category.value,

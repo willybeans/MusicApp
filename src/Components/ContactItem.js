@@ -8,7 +8,7 @@ class ContactItem extends Component {
     let botBorder = { 'border-bottom' : '5px solid' };
     return (
       <div className="Contacts_List" style={botBorder}>
-        <h4> Contact # {this.props.contact.id}
+        <h4> Contact
         <a href="#" onClick={this.deleteContact.bind(this, this.props.contact.id)}> X </a>
         </h4>
         <li className="title">{this.props.contact.title}</li>
