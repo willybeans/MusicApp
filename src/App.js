@@ -22,7 +22,6 @@ class App extends Component {
       messagingSenderId: "1094864530762"
       };
     firebase.initializeApp(config);
-
     this.contactRef = firebase.database().ref();
 
     this.setState({contacts: [
@@ -49,6 +48,29 @@ class App extends Component {
 
   }
 
+  componentDidMount(){
+    var that = this;
+    this.contactRef = firebase.database().ref();
+    const contactssRef = this.contactRef.child('contacts');
+    this.contactRef.once("value").then(function(snapshot){
+      var contacts = [];
+      var contactID;
+      snapshot.forEach(function(data){
+        var contact = {
+          id: data.val().id,
+          title: data.val().title,
+          contact: data.val().contact,
+          category: data.val().category,
+          phone: data.val().phone,
+          city: data.val().city
+        }
+        contacts.push(contact);
+        console.log(data.val().title);
+        that.setState({contacts: contacts});
+      });
+    });
+  }
+
   handleAddContact(contact){
     let contacts = this.state.contacts;
     contacts.push(contact);
@@ -62,6 +84,7 @@ class App extends Component {
     contacts.splice(index, 1);
     this.setState({contacts: contacts});
   }
+
 render() {
   return (
     <div className="App container">
