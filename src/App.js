@@ -13,17 +13,17 @@ class App extends Component {
   }
 
   componentWillMount(){
-var config = {
-  apiKey: "AIzaSyByH3hYHm_xX-I8bxcZBqbmMaT4RHtU9Mw",
-  authDomain: "musicapp-c75bf.firebaseapp.com",
-  databaseURL: "https://musicapp-c75bf.firebaseio.com",
-  projectId: "musicapp-c75bf",
-  storageBucket: "musicapp-c75bf.appspot.com",
-  messagingSenderId: "1094864530762"
-};
-firebase.initializeApp(config);
+    var config = {
+      apiKey: "AIzaSyByH3hYHm_xX-I8bxcZBqbmMaT4RHtU9Mw",
+      authDomain: "musicapp-c75bf.firebaseapp.com",
+      databaseURL: "https://musicapp-c75bf.firebaseio.com",
+      projectId: "musicapp-c75bf",
+      storageBucket: "musicapp-c75bf.appspot.com",
+      messagingSenderId: "1094864530762"
+      };
+    firebase.initializeApp(config);
 
-
+    this.contactRef = firebase.database().ref();
 
     this.setState({contacts: [
       {
@@ -45,15 +45,14 @@ firebase.initializeApp(config);
     ]});
   }
 
-  componentDidMount(){
-    const rootRef = firebase.database().ref();
-    const contactRef = rootRef.child('contacts');
-    console.log(contactRef);
+  componentWillUnmount(){
+
   }
 
   handleAddContact(contact){
     let contacts = this.state.contacts;
     contacts.push(contact);
+    this.contactRef.push(contact);
     this.setState({contacts: contacts});
   }
 

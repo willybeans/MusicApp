@@ -19,7 +19,7 @@ class AddContact extends React.Component {
       alert("City is required!");
     } else {
       this.setState({newContact:{
-        id : this.refs.title.value,
+        id : this.refs.phone.value,
         title: this.refs.title.value,
         contact: this.refs.contact.value,
         category: this.refs.category.value,
