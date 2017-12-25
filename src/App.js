@@ -23,25 +23,6 @@ class App extends Component {
       };
     firebase.initializeApp(config);
     this.contactRef = firebase.database().ref();
-
-    this.setState({contacts: [
-      {
-        id: 11,
-        title: 'A-Z Publicists',
-        contact: 'Sara Lee',
-        category: 'publicist',
-        phone: '888-888-8888',
-        city: 'Cleveland'
-      },
-      {
-        id: 1,
-        title: 'Blue Note',
-        contact: 'Johnny Bowtie',
-        category: 'venue',
-        phone: '555-555-5555',
-        city: 'Cincinnati'
-      }
-    ]});
   }
 
   componentWillUnmount(){
@@ -54,7 +35,6 @@ class App extends Component {
     const contactssRef = this.contactRef.child('contacts');
     this.contactRef.once("value").then(function(snapshot){
       var contacts = [];
-      var contactID;
       snapshot.forEach(function(data){
         var contact = {
           id: data.val().id,
@@ -65,7 +45,6 @@ class App extends Component {
           city: data.val().city
         }
         contacts.push(contact);
-        console.log(data.val().title);
         that.setState({contacts: contacts});
       });
     });
