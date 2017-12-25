@@ -70,13 +70,11 @@ render() {
       <div className="row" id="main-content">
         <div className="col-sm-3" id="Menu_bar">
           <div className="Menu" >
-          <h4>Insert Menu Here</h4>
+            <AddContact addContact={this.handleAddContact.bind(this)} />
           </div>
         </div>
         <div className="col-sm-7" id="Mind">
           <div className="Main_Form">
-            <h4>Insert Form Here</h4>
-              <AddContact addContact={this.handleAddContact.bind(this)} />
               <Contacts contacts={this.state.contacts} onDelete={this.handleDeleteContact.bind(this)}/>
           </div>
         </div>
