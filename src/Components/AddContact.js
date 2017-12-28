@@ -23,7 +23,7 @@ class AddContact extends React.Component {
         title: this.refs.title.value,
         contact: this.refs.contact.value,
         category: this.refs.category.value,
-        phone: this.refs.email.value,
+        email: this.refs.email.value,
         city: this.refs.city.value
       }}, function(){
         //console.log(this.state);
