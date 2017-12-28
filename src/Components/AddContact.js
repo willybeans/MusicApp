@@ -13,17 +13,17 @@ class AddContact extends React.Component {
       alert("Title is required!");
     } else if (this.refs.contact.value === ''){
       alert("Name is required!");
-    } else if (this.refs.phone.value === ''){
-      alert("Number is required!");
+    } else if (this.refs.email.value === ''){
+      alert("Email is required!");
     } else if (this.refs.city.value === ''){
       alert("City is required!");
     } else {
       this.setState({newContact:{
-        id : this.refs.phone.value,
+        id : this.refs.title.value,
         title: this.refs.title.value,
         contact: this.refs.contact.value,
         category: this.refs.category.value,
-        phone: this.refs.phone.value,
+        phone: this.refs.email.value,
         city: this.refs.city.value
       }}, function(){
         //console.log(this.state);
@@ -57,8 +57,8 @@ class AddContact extends React.Component {
             </select>
           </div>
           <div>
-            <label>Number</label><br />
-            <input type="text" ref="phone" />
+            <label>Email</label><br />
+            <input type="text" ref="email" />
           </div>
           <div>
             <label>City</label><br />

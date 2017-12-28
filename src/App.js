@@ -4,11 +4,16 @@ import Contacts from './Components/Contacts';
 import AddContact from './Components/AddContact';
 import * as firebase from 'firebase';
 
+var contributeDisplay = {
+  display: 'block'
+}
+
 class App extends Component {
   constructor () {
     super ();
     this.state = {
-      contacts: []
+      contacts: [],
+      showContribute: false
     }
   }
 
@@ -41,7 +46,7 @@ class App extends Component {
           title: data.val().title,
           contact: data.val().contact,
           category: data.val().category,
-          phone: data.val().phone,
+          email: data.val().email,
           city: data.val().city
         }
         contacts.push(contact);
@@ -49,6 +54,17 @@ class App extends Component {
       });
     });
   }
+
+  handleClickContribute(){
+  //let show = this.state.showContribute;
+  if(!show){
+    this.setState({showContribute: true});
+    contributeDisplay = { display: 'block' };
+  } else {
+    this.setState({showContribute: false});
+    contributeDisplay = { display: 'none' };
+  }
+}
 
   handleAddContact(contact){
     let contacts = this.state.contacts;
@@ -68,8 +84,8 @@ render() {
   return (
     <div className="App container">
       <div className="row" id="main-content">
-        <div className="col-sm-3" id="Menu_bar">
-          <div className="Menu" >
+        <div className="col-sm-3" id="Menu_bar" onClick={this.handleClickContribute.bind(this)}>
+          <div className="Menu" style={contributeDisplay} >
             <AddContact addContact={this.handleAddContact.bind(this)} />
           </div>
         </div>
