@@ -10,9 +10,23 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
+  top: auto;
+  left: auto;
+  display: block;
   align-items: center;
   justify-content: center;
+}
+.addContact {
+  background:#e1e1e1;
+  margin: 0 auto;
+  width: 50%;
+  position:relative;
+  z-index:41;
+  padding:20px;
+  -webkit-box-shadow:0 0 10px rgba(0,0,0,0.4);
+  -moz-box-shadow:0 0 10px rgba(0,0,0,0.4);
+  box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+hideButton {
+
 }

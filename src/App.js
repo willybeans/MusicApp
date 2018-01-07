@@ -105,19 +105,19 @@ class App extends Component {
 render() {
   const modal = this.state.showModal ? (
     <Modal>
-      <div className="modal">
-        <div>
+      <div className="modal container" tabIndex="-1" role="dialog">
+        <div className="addContact modal-content">
+        <button type="button" className="close" onClick={this.handleHide} aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <AddContact
           addContact={this.handleAddContact.bind(this)}
           showForm={this.handleForm.bind(this)} />
         </div>
-      <button onClick={this.handleHide}>Hide</button>
     </div>
   </Modal>
 ) : null;
   return (
     <div className="App container">
-      <button onClick={this.handleShow}>Contribute</button>
+      <button className="btn btn-ooutline-secondary" onClick={this.handleShow}>Contribute</button>
         <div className="row" id="main-content">
           <div className="col-sm-3" id="Menu_bar">
             <h4>Insert search bar</h4>

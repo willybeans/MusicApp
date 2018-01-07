@@ -45,7 +45,6 @@ class AddContact extends React.Component {
   render() {
     return (
       <div>
-        <h3>Add Contact</h3>
         <form name="test" onSubmit={this.handleSubmit.bind(this)}>
           <div className="form-group">
             <label>Business Title</label><br />
@@ -82,7 +81,7 @@ class AddContact extends React.Component {
             <label>State</label><br />
             <input type="text" className="form-control" ref="state" />
           </div>
-          <input type="submit" className="btn btn-default" value="Submit" />
+          <input type="submit" className="btn btn-outline-primary" value="Submit" />
         </form>
       </div>
     );
