@@ -5,12 +5,8 @@ class ContactItem extends Component {
     this.props.onDelete(id);
   }
   render() {
-    let botBorder = {
-      'border-bottom' : '5px solid',
-      'list-style-type' : 'none'
-     };
     return (
-      <div className="Contacts_List" style={botBorder}>
+      <div className="contactItems shadow">
         <h4> {this.props.contact.title}
         <a href="#" onClick={this.deleteContact.bind(this, this.props.contact.id)}> X </a>
         </h4>
