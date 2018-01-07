@@ -17,7 +17,9 @@ class ContactItem extends Component {
         <li className="contact">{this.props.contact.contact}</li>
         <li className="category">{this.props.contact.category}</li>
         <li className="email">{this.props.contact.email}</li>
-        <li className="city">{this.props.contact.city}</li>
+        <li className="phone">{this.props.contact.phone}</li>
+        <li className="location">{this.props.contact.city},
+        {this.props.contact.state}</li>
       </div>
     );
   }

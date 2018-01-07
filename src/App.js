@@ -4,8 +4,25 @@ import Contacts from './Components/Contacts';
 import AddContact from './Components/AddContact';
 import * as firebase from 'firebase';
 
-var contributeDisplay = {
-  display: 'block'
+const appRoot = document.getElementById('app-root');
+const modalRoot = document.getElementById('modal-root');
+
+class Modal extends React.Component{
+  constructor(props){
+    super(props);
+    this.el = document.createElement('div');
+  }
+  componentDidMount(){
+    modalRoot.appendChild(this.el);
+  }
+  componentWillUnmount() {
+    modalRoot.removeChild(this.el);
+  }
+  render() {
+    return ReactDOM.createPortal(
+      this.props.children, this.el,
+    );
+  }
 }
 
 class App extends Component {
@@ -13,8 +30,16 @@ class App extends Component {
     super ();
     this.state = {
       contacts: [],
-      showContribute: false
-    }
+      showModal: false
+    };
+    this.handleShow = this.handleShow.bind(this);
+    this.handleHide = this.handleHide.bind(this);
+  }
+  handleShow(){
+    this.setState({showModal: true});
+  }
+  handleHide(){
+    this.setState({showModal: false});
   }
 
   componentWillMount(){
@@ -47,7 +72,9 @@ class App extends Component {
           contact: data.val().contact,
           category: data.val().category,
           email: data.val().email,
-          city: data.val().city
+          phone: data.val().phone,
+          city: data.val().city,
+          state: data.val().state
         }
         contacts.push(contact);
         that.setState({contacts: contacts});
@@ -55,22 +82,15 @@ class App extends Component {
     });
   }
 
-  handleClickContribute(){
-  //let show = this.state.showContribute;
-  if(!show){
-    this.setState({showContribute: true});
-    contributeDisplay = { display: 'block' };
-  } else {
-    this.setState({showContribute: false});
-    contributeDisplay = { display: 'none' };
-  }
-}
-
   handleAddContact(contact){
     let contacts = this.state.contacts;
     contacts.push(contact);
     this.contactRef.push(contact);
     this.setState({contacts: contacts});
+    if (this.showModal){
+      this.setState({showModal: false});
+    }
+
   }
 
   handleDeleteContact(id){
@@ -79,22 +99,36 @@ class App extends Component {
     contacts.splice(index, 1);
     this.setState({contacts: contacts});
   }
-
+  handleForm(x){
+    this.setState({showModal: x});
+  }
 render() {
+  const modal = this.state.showModal ? (
+    <Modal>
+      <div className="modal">
+        <div>
+        <AddContact
+          addContact={this.handleAddContact.bind(this)}
+          showForm={this.handleForm.bind(this)} />
+        </div>
+      <button onClick={this.handleHide}>Hide</button>
+    </div>
+  </Modal>
+) : null;
   return (
     <div className="App container">
-      <div className="row" id="main-content">
-        <div className="col-sm-3" id="Menu_bar" onClick={this.handleClickContribute.bind(this)}>
-          <div className="Menu" style={contributeDisplay} >
-            <AddContact addContact={this.handleAddContact.bind(this)} />
+      <button onClick={this.handleShow}>Contribute</button>
+        <div className="row" id="main-content">
+          <div className="col-sm-3" id="Menu_bar">
+            <h4>Insert search bar</h4>
+          </div>
+          <div className="col-sm-7" id="Mind">
+            <div className="Main_Form">
+                <Contacts contacts={this.state.contacts} onDelete={this.handleDeleteContact.bind(this)}/>
+            </div>
           </div>
         </div>
-        <div className="col-sm-7" id="Mind">
-          <div className="Main_Form">
-              <Contacts contacts={this.state.contacts} onDelete={this.handleDeleteContact.bind(this)}/>
-          </div>
-        </div>
-      </div>
+        {modal}
     </div>
   );
 }
