@@ -1,1 +1,1 @@
-This is intended as a database for local musicians to use to share contacts for booking gigs, sending out press releases to local media. Its intended to be populated by its user base to facilitate the gig'ing process. 
+This is a database for local musicians to share to ease the countless hours of looking for places to publicise and perform your music. 
